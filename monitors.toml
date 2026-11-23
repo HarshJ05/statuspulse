@@ -1,0 +1,66 @@
+# What StatusPulse watches. Add a [[monitor]] block per website or API.
+
+[settings]
+title = "Harsh Jindal · Project Status"
+fail_threshold = 2      # consecutive failed checks before an incident opens
+ssl_warn_days = 14      # mark as degraded when a TLS certificate expires sooner
+interval_s = 300        # used by the built-in scheduler (RUN_SCHEDULER=1)
+
+[[monitor]]
+name = "vaultai-api"
+label = "VaultAI API"
+group = "APIs"
+url = "https://vaultai-five.vercel.app/api/health"
+expect_text = "\"status\":\"ok\""
+slow_ms = 6000          # serverless cold starts can take a few seconds
+
+[[monitor]]
+name = "vaultai-web"
+label = "VaultAI web app"
+group = "Web apps"
+url = "https://vaultai-five.vercel.app/"
+slow_ms = 6000
+
+[[monitor]]
+name = "adscout"
+label = "AdScout"
+group = "Web apps"
+url = "https://adscout-liart.vercel.app/"
+
+[[monitor]]
+name = "spreadtrader"
+label = "SpreadTrader dashboard"
+group = "Dashboards"
+url = "https://harshj05.github.io/spreadtrader/"
+
+[[monitor]]
+name = "spreadtrader-data"
+label = "SpreadTrader results feed"
+group = "APIs"
+url = "https://harshj05.github.io/spreadtrader/data/summary.json"
+expect_text = "\"portfolio\""
+
+[[monitor]]
+name = "regimelab"
+label = "RegimeLab dashboard"
+group = "Dashboards"
+url = "https://harshj05.github.io/regimelab/"
+
+[[monitor]]
+name = "regimelab-data"
+label = "RegimeLab results feed"
+group = "APIs"
+url = "https://harshj05.github.io/regimelab/data/summary.json"
+expect_text = "\"assets\""
+
+[[monitor]]
+name = "saathi-ai"
+label = "Saathi AI prototype"
+group = "Prototypes"
+url = "https://saathi-clinic-companion.lovable.app/"
+
+[[monitor]]
+name = "swasthya-saathi"
+label = "Swasthya Saathi prototype"
+group = "Prototypes"
+url = "https://genai-healthcare.lovable.app/"
